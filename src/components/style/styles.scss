@@ -1,0 +1,723 @@
+
+body {
+     font-family: "Roboto", sans-serif;
+}
+@import '../../globals';
+html {
+     background: rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    min-width: 100%;
+}
+@include react-md-everything;
+a {
+  text-decoration:  none;
+  color: #fff;
+}
+.login-wrapper {
+   position: absolute;
+   top: -360px;
+   left: 25%;
+   height: 300px;
+}
+.message {
+  text-align: center;
+}
+.option-signin {
+   font-size: 16px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-left: 5px;
+    .line-divider {
+      width: 260px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .line-divider span {
+      padding: 5px;
+      color: darkgreen;
+    }
+}
+.signin {
+  @extend .login-form;
+  padding-bottom: 0px;
+}
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 3px;
+    font-size: 20px;
+    text-transform: capitalize;
+
+    .md-btn {
+      text-transform: capitalize;
+      font-size: 16px;
+    }
+}
+
+.meal-opacity-enter {
+  opacity: 0;
+
+  &.meal-opacity-enter-active {
+    opacity: 1;
+    transition-duration: 1s;
+    transition-property: opacity;
+  }
+}
+
+.card_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.cards {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    //padding-top: 1%;
+}
+.card {
+    min-width: 300px;
+    height: auto;
+    margin: 7px;
+    margin-top: 0px;
+}
+.login-card {
+ @extend .card;
+  width: 520px;
+  height: 500px;
+  padding: 30px;
+}
+.my-card {
+  @extend .card;
+  min-width: 150px;
+  max-width: 150px;
+  margin: 3px;
+  padding: 5px;
+}
+@media screen and (max-width: 640px) {
+  .cards {
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .my-card {
+   margin: 3px;
+  }
+}
+.social-button {
+  color: #fff;
+}
+.social-icon {
+  margin-right: 5px;
+  color: #fff
+}
+.facebook-button {
+  @extend .social-button;
+  background-color: royalblue;
+}
+.twitter-button {
+  @extend .social-button;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #55acee;
+}
+.masonry-grid {
+  position: relative;
+}
+.masonry-grid .grid-item {
+  position: absolute;
+  transition: top 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955), left 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@media (min-width: 360px) and (max-width: 640px){
+    .small-device {
+       justify-content: flex-start;
+       font-size: 12px;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .small-device {
+       justify-content: flex-end;
+       font-size: 10px;
+       width: 100px;
+    }
+}
+#chart-legends {
+   padding-bottom: 10px;
+}
+#chart-legends li{
+  min-width: 200px;
+ max-width: 251px;
+    list-style: none;
+    padding: 0 0;
+    //padding-right: 2px;
+    //display: inline-block;
+    word-break: break-all;
+    //flex-flow: row wrap;
+    font-size: 12px;
+    font-family: monospace;
+    //font-weight: bold;
+  margin: 3px;
+    margin-left: -40px;
+    margin-right: 15px;
+}
+.chart {
+  width: 160px;
+}
+.poll-chart {
+  width: 670px;
+  padding-bottom: 20px;
+  .poll-button {
+    float: right;
+    paddingTop: 50px;
+  }
+}
+.poll {
+    width: 290px;
+}
+.polling {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+}
+@media (max-width: 768px) {
+  #chart-legends li{
+    min-width: 100px;
+      font-size: 9px;
+      margin-left: -50px;
+  },
+  .chart {
+    width: 120px;
+  },
+  .poll-chart {
+    width: 350px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 18px;
+    .poll-button {
+      paddingTop: 50px;
+    }
+  },
+  .poll {
+      width: 120px;
+  }
+}
+#chart-legends li span{
+  height: 10px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 2px;
+  padding-top: 2px;
+  margin-right: 5px;
+}
+/**@import '../../globals';
+
+body {
+     font-family: "Roboto", sans-serif;
+}
+@include react-md-everything;
+
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 3%;
+}
+.card {
+    min-width: 300px;
+
+    height: auto;
+    margin: 7px;
+}
+.btn {
+    width: 200px;
+    height: 40px;
+    position: relative;
+    background-color: blue;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18; font-weight: bold;
+}
+.actions {
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.questions {
+    margin-left: 30px;
+
+}
+.card_actions {
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+@media (min-width: 360px) and (max-width: 640px){
+    .small-device {
+       justify-content: flex-start;
+       font-size: 12px;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .small-device {
+       justify-content: flex-end;
+       font-size: 10px;
+       width: 100px;
+    }
+}
+.poll-container {
+    margin-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+
+}
+.chart {
+    width: 50px;
+    height: auto;
+    margin-left: 8px;
+}
+.new-poll {
+    width: 500px;
+    height: 450px;
+}
+.new-poll-container {
+    @extend .poll-container;
+    margin-top: 10%;
+    text-align: center;
+}
+.ac {
+    @extend .actions;
+}
+.badge-wrapper {
+    width: 210px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.badge {
+   background-color: #009688;
+   height: 17px;
+   min-width: 30px;
+   width: auto;
+   text-align: center;
+   border-radius: 4px;
+}
+.badge-content {
+    color: #fff;
+
+}
+.b {
+    word-wrap: break-word;
+}
+#chart-legends {
+   padding-bottom: 10px;
+}
+#chart-legends li{
+    list-style: none;
+    padding: 0 0;
+    display: inline-block;
+    font-weight: bold;
+    margin: 3px;
+}
+#chart-legends li span{
+  height: 10px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 2px;
+  padding-top: 2px;
+  margin-right: 5px;
+}
+.actions a {
+    text-decoration: none;
+    color: #fff;
+}
+.login-wrapper {
+   display: flex;
+   flex-direction:  column;
+   align-items: center;
+   align-self: center;
+   justify-content: center;
+   margin-top: 10%;
+}
+.message {
+  text-align: center;
+}
+.line-divider {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+.option-signin {
+   padding-top: 13px;
+   font-size: 16px
+}
+.line-divider span {
+  padding: 5px;
+  color: darkgreen;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding-top: 13px
+}
+.signin {
+  @extend .login-form;
+  padding-bottom: 10px;
+
+}
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+
+}
+
+.card_actions_2 {
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.card_2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  padding: 30px;
+}
+.social-button {
+  color: #fff;
+}
+.social-icon {
+  margin-right: 5px;
+  color: #fff
+}
+.facebook-button {
+  @extend .social-button;
+  background-color: royalblue;
+}
+.twitter-button {
+  @extend .social-button;
+  background-color: #55acee;
+
+}
+
+@media (min-width: 360px) and (max-width: 640px){
+    .small-device {
+       justify-content: flex-start;
+       font-size: 12px;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .small-device {
+       justify-content: flex-end;
+       font-size: 10px;
+       width: 100px;
+    }
+}
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}**/
+
+
+
+
+
+
+/**body {
+     font-family: "Roboto", sans-serif;
+
+}
+@import '../../globals';
+
+html {
+     background: rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    min-width: 100%;
+   // padding-left: 70px;
+}
+@include react-md-everything;
+
+.home {
+  text-align: center;
+
+}
+.home-logo {
+  animation: home-logo-spin infinite 20s linear;
+  height: 80px;
+}
+#title {
+  // color: $md-light-blue-500;
+   font-weight: bold;
+   text-align: center;
+}
+#star {
+  width: 60px;
+ font-size: 18px;
+// color: $md-light-blue-500;
+ }
+ #star #count {
+     font-size: 14px;
+ }
+a {
+  text-decoration:  none;
+  color: #fff;
+
+}
+
+.home-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+
+  h2 {
+    color: $md-white-base;
+  }
+}
+
+.home-intro {
+  font-size: large;
+}
+
+@keyframes home-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.login-wrapper {
+  //// display: flex;
+  // flex-direction:  row;
+   //align-items: center;
+  // justify-content: center;
+  position: absolute;
+
+ top: -360px;
+  left: 25%;
+   height: 300px;
+
+}
+
+.message {
+  text-align: center;
+}
+
+.option-signin {
+   font-size: 16px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-left: 5px;
+    .line-divider {
+      width: 260px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      justify-content: center;
+      padding: 10px;
+    }
+    .line-divider span {
+      padding: 5px;
+      color: darkgreen;
+    }
+}
+.signin {
+  @extend .login-form;
+  padding-bottom: 0px;
+}
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+
+}
+
+.card_actions {
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.card1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+/**.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 3%;
+    //margin-left: auto;
+    //margin-right: auto;
+}
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+}
+.card {
+    min-width: 300px;
+
+    height: auto;
+    margin: 7px;
+}
+.login-card {
+ @extend .card;
+  width: 520px;
+  height: 500px;
+  padding: 30px;
+}
+.my-card {
+  @extend .card;
+  min-width: 150px;
+  max-width: 150px;
+
+
+  margin: auto;
+  padding: 5px;
+}
+#masonry-layout {
+  margin: 5px auto;
+
+}
+.gallery {
+  display: grid;
+  grid-gap: 10px;
+}
+container {
+
+}
+
+@media screen and (max-width: 640px) {
+  .cards {
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .my-card {
+   margin: 3px;
+  }
+}
+.social-button {
+  color: #fff;
+}
+.social-icon {
+  margin-right: 5px;
+  color: #fff
+}
+.facebook-button {
+  @extend .social-button;
+  background-color: royalblue;
+}
+.twitter-button {
+  @extend .social-button;
+  background-color: #55acee;
+
+}
+
+  .masonry-grid {
+  position: relative;
+}
+.masonry-grid .grid-item {
+  position: absolute;
+  transition: top 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955), left 400ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@media (min-width: 360px) and (max-width: 640px){
+    .small-device {
+       justify-content: flex-start;
+       font-size: 12px;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+   .small-device {
+       justify-content: flex-end;
+       font-size: 10px;
+       width: 100px;
+    }
+}**/
