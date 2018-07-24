@@ -136,6 +136,10 @@ a {
   @extend .social-button;
   background-color: royalblue;
 }
+.github-button {
+  @extend .social-button;
+  background-color: #444444;
+}
 .twitter-button {
   @extend .social-button;
   padding-top: 5px;

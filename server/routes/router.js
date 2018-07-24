@@ -28,15 +28,16 @@ router.get('/signout', (req, res) => {
     res.json({ success: true});
 })
 
-router.get('/auth/twitter', (req, res, next) => {
-  return passport.authenticate('twitter')(req, res, next);
+router.get('/auth/github', (req, res, next) => {
+  return passport.authenticate('github')(req, res, next);
 })
 
-router.get('/auth/twitter/callback',
-      passport.authenticate('twitter', { failureredirect: redir + 'account/login'}),
-      (req, res) => {
-        res.redirect(redir)
-      })
+router.get("/auth/github/callback", (req, res, next) => {
+  return passport.authenticate('github', {
+    successRedirect: redir,
+    failureRedirect: redir + 'account/login'
+  })(req, res, next);
+});
 
 router.post('/signin', (req, res, next) => {
 
