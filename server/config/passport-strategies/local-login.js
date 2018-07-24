@@ -1,7 +1,4 @@
-//import { Strategy as LocalStrategy } from 'passport-local';
-//import { User } from '../../models';
 
-//const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('mongoose').model('User');
 
