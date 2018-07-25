@@ -39,14 +39,12 @@ export const vote = (state = initialState, action) => {
                 ...state,
                 mypolls: action.payload
             }
-
         case ActionType.SEARCH_POLL:
-            console.log('PAns: ' + JSON.stringify(action.payload));    
             return {
                 ...state,
                 polls: action.payload.polls,
                 poll: action.payload.poll
-            }    
+            }
         case ActionType.ON_ERROR:
             return {
                 ...state,
@@ -67,7 +65,7 @@ export const vote = (state = initialState, action) => {
             return {
                 ...state,
                 poll: action.payload
-            }    
+            }
         case ActionType.SHOW_DIALOG:
             return {
                 ...state,
@@ -77,15 +75,15 @@ export const vote = (state = initialState, action) => {
                 }
             }
         case ActionType.SELECT_POLL:
-              return {
-                  ...state,
-                  poll: action.poll
-              }
-         case ActionType.VOTE_STATUS:
-              return {
-                  ...state,
-                  status: action.status
-              }      
+            return {
+                ...state,
+                poll: action.poll
+            }
+        case ActionType.VOTE_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         case ActionType.SIGN_OUT:
             return initialState;
         default:

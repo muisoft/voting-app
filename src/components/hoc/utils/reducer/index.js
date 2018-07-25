@@ -1,6 +1,8 @@
 import { push } from 'react-router-redux';
-import { signin, signup, signout, resetAll, getAllPolls, getMyPolls, selectedPoll,
-    deletePoll, updatePoll, showDialog, addNewPoll, submitVote, getPoll, setVoteStatus } from '../../../../actions';
+import {
+    signin, signup, signout, resetAll, getAllPolls, getMyPolls, selectedPoll,
+    deletePoll, updatePoll, showDialog, addNewPoll, submitVote, getPoll, setVoteStatus
+} from '../../../../actions';
 
 export const mapStateToProps = ({ vote }) => {
     return {
@@ -44,7 +46,7 @@ export const mapDispatchToProps = (dispatch) => {
             dispatch(selectedPoll(poll))
         },
         submit: (vote) => {
-           dispatch(submitVote(vote))
+            dispatch(submitVote(vote))
         },
         toMyPolls: () => {
             dispatch(push('/mypolls'))
@@ -53,7 +55,7 @@ export const mapDispatchToProps = (dispatch) => {
             dispatch(push('/'))
         },
         gotoPoll: (id) => {
-          dispatch(push(`/poll/${id}`));
+            dispatch(push(`/poll/${id}`));
         },
         updatePoll: (poll) => {
             dispatch(updatePoll(poll))

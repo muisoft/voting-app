@@ -5,21 +5,21 @@ const compression = require('compression');
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const session = require( 'express-session');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const mongoose = require( 'mongoose');
-const passport = require( 'passport');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
 const normalizePort = port => parseInt(port, 10);
 const PORT = normalizePort(process.env.PORT || 5005);
 
 require('./server/models')(process.env.DB_CONN);
- 
+
 const app = express();
 const dev = app.get('env') !== 'production';
 
-app.use( bodyParser.json());
-app.use( bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
   secret: "secretsession",
@@ -29,12 +29,12 @@ app.use(session({
 }));
 
 
-if(dev){
+if (dev) {
   app.use(morgan('dev'));
 }
 
-app.use( passport.initialize());
-app.use( passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./server/config/passport')(passport);
 
@@ -55,6 +55,6 @@ if (!dev) {
 
 const server = createServer(app);
 server.listen(PORT, err => {
-  if(err) throw err;
+  if (err) throw err;
   console.log('Server started');
 })

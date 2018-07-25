@@ -3,20 +3,13 @@ const passport = require('passport');
 const User = require('mongoose').model('User');
 const Poll = require('mongoose').model('Poll');
 const { allPolls, myPolls, savePoll, poll, signup, submitVote, updatePoll, deletePoll } = require('./utils');
-/**import {
-    signup,
-    savePics, allPics,
-    myPics,
-    deletePics,
-    ratePics
-} from './utils';
-**/
+
 var router = express.Router();
 
 const redir = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001/';
 
 const isLoggedIn = (req, res, next) => {
-  if(req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     return next();
   } else {
     res.redirect(redir);
@@ -24,22 +17,21 @@ const isLoggedIn = (req, res, next) => {
 }
 
 router.get('/signout', (req, res) => {
-    req.logout();
-    res.json({ success: true});
-})
+  req.logout();
+  res.json({ success: true });
+});
 
 router.get('/auth/twitter', (req, res, next) => {
   return passport.authenticate('twitter')(req, res, next);
-})
+});
 
 router.get('/auth/twitter/callback',
-      passport.authenticate('twitter', { failureredirect: redir + 'account/login'}),
-      (req, res) => {
-        res.redirect(redir)
-      })
+  passport.authenticate('twitter', { failureredirect: redir + 'account/login' }),
+  (req, res) => {
+    res.redirect(redir)
+  });
 
 router.post('/signin', (req, res, next) => {
-
   return passport.authenticate('local-signin', (err, user) => {
     req.logIn(user, err => {
       return res.json(user);
@@ -50,45 +42,40 @@ router.post('/signin', (req, res, next) => {
 
 router.post('/signup', (req, res) => {
   signup(req, res);
-})
+});
+
 router.get('/allpolls', (req, res) => {
-  console.log('All Polls');
   allPolls(req, res);
 });
+
 router.post('/poll', (req, res) => {
-  console.log('Enter Poll');
   poll(req, res);
 });
+
 router.get('/poll/:poll', (req, res, next) => {
-  console.log('Enter Poll');
   Poll.findOne({ _id: req.params.poll }, (err, poll) => {
-    console.log('POLL: ' + JSON.stringify(poll));
-   // Poll.find({}, (err, polls) => {
-     // res.json({ polls: polls, poll: poll });
-      res.redirect(redir + 'poll/' + req.params.poll); 
-   // })
+    res.redirect(redir + 'poll/' + req.params.poll);
   });
-})  
-router.get('/mypolls', isLoggedIn, (req, res) => {
- myPolls(req, res);
 });
+
+router.get('/mypolls', isLoggedIn, (req, res) => {
+  myPolls(req, res);
+});
+
 router.post('/savepoll', isLoggedIn, (req, res) => {
-  console.log('enter save');
   savePoll(req, res);
 });
+
 router.post('/submitvote', (req, res) => {
-  console.log('enter submitvote');
   submitVote(req, res);
 });
+
 router.post('/updatepoll', isLoggedIn, (req, res) => {
-  console.log('enter update');
   updatePoll(req, res);
 });
+
 router.post('/deletepoll', isLoggedIn, (req, res) => {
   deletePoll(req, res);
 });
-/**
-router.post('/ratepics', isLoggedIn, (req, res) => {
-  ratePics(req, res);
-}); **/
+
 module.exports = router;

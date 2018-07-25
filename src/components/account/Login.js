@@ -2,30 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, TextField, Card, FontIcon, Divider } from 'react-md';
 
- import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import { withMainComponent } from '../hoc';
 
 const Login = ({ onSignin, partialState, gotoTwitter, user, handleChange, location, history }) => {
-   const styles = {
-       submitButton: {
-         marginTop: 15
-       },
-       divider: {
-         width: 150
-       },
-       signin: {
-         width: 400
-       },
-       optionSignin: {
-         paddingRight: 5
-       },
-       input: {
-         fontSize: 16
-       }
-   }
-    const login_twitter_url = process.env.NODE_ENV === "production"?
-      "/auth/twitter":"http://localhost:5005/auth/twitter";
+    const styles = {
+        submitButton: {
+            marginTop: 15
+        },
+        divider: {
+            width: 150
+        },
+        signin: {
+            width: 400
+        },
+        optionSignin: {
+            paddingRight: 5
+        },
+        input: {
+            fontSize: 16
+        }
+    }
+    const login_twitter_url = process.env.NODE_ENV === "production" ?
+        "/auth/twitter" : "http://localhost:5005/auth/twitter";
     return (
         <form className="login-form" onSubmit={onSignin}>
             <div className="login-form">
@@ -35,8 +35,9 @@ const Login = ({ onSignin, partialState, gotoTwitter, user, handleChange, locati
                         raised
                         className="twitter-button">
                         <div className="small-device btn">
-                            <FontIcon iconClassName="fa fa-twitter" className="social-icon" /><a rel="noopener noreferrer" href={login_twitter_url}>Login with Twitter</a>
-                                </div>
+                            <FontIcon iconClassName="fa fa-twitter" className="social-icon" />
+                            <a rel="noopener noreferrer" href={login_twitter_url}>Login with Twitter</a>
+                        </div>
                     </Button>
                 </div>
                 <div className="line-divider">
@@ -71,7 +72,6 @@ const Login = ({ onSignin, partialState, gotoTwitter, user, handleChange, locati
             </div>
         </form>
     )
-
 }
 
 Login.PropTypes = {

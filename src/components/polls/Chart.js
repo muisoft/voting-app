@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ChartJs from 'chart.js';
 
-const getHexRandomColor = () => {
-    var hex = "0123456789ABCDEF",
-        color = "#";
-    for (var i = 1; i <= 6; i++) {
-        color += hex[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+
 const getBackgroundColor = (ans) => {
-    let default_colors = ['#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC','#0099C6','#DD4477','#66AA00','#B82E2E','#316395','#994499','#22AA99','#AAAA11','#6633CC','#E67300','#8B0707','#329262','#5574A6','#3B3EAC']
+    let default_colors = ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC']
     let colors = [];
     for (var index = 0; index < ans.length; index++) {
         colors.push(default_colors[index]);
@@ -19,7 +12,6 @@ const getBackgroundColor = (ans) => {
     return colors;
 }
 const config = (answers) => {
-    //console.log('Chart: ' + JSON.stringify(answers[0]));
     // filter all answer
     let labels = answers.map((val, i) => {
         return (val.text).trim();
@@ -59,13 +51,11 @@ export default class Chart extends Component {
     componentDidUpdate() {
         this.renderChart();
     }
-    
+
     renderChart() {
         let { answers } = this.props;
-       // console.log('Y: ' + JSON.stringify(answers[0]));
         let c = this.chart.getContext('2d');
-        var chart = new ChartJs(c, config(answers));
-        // document.getElementById('chart-legends').innerHTML
+        let chart = new ChartJs(c, config(answers));
         this.chartlegends.innerHTML = chart.generateLegend();
     }
 

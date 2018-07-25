@@ -1,4 +1,4 @@
-//const passport = require('passport');
+
 const User = require('mongoose').model('User');
 
 module.exports = (passport) => {
@@ -12,7 +12,6 @@ module.exports = (passport) => {
     });
 
     require('./passport-strategies/local-login')(passport);
-    //passport.use("local-signin", login);
     require('./passport-strategies/local-signup')(passport);
     require('./passport-strategies/twitter-login')(passport);
 }

@@ -23,7 +23,6 @@ const Account = ({ match, user, location}) => {
             </Card>
         </div>
     )
-
 }
 Account.PropTypes = {
     match: PropTypes.object,

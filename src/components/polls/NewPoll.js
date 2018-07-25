@@ -70,34 +70,3 @@ NewPoll.PropTypes = {
 }
 
 export default withMainComponent(NewPoll);
-
-
-/**
-<form>
-    <section style={styles.section}>
-        <TextField
-            id="title"
-            name="title"
-            placeholder="Pic's title"
-            block
-            paddedBlock
-            style={{borderRadius: 5}}
-            onChange={handleChange}
-        />
-        <Divider />
-        <TextField
-            id="thumbnail"
-            name="thumbnail"
-            placeholder="Pic's url"
-            block
-            paddedBlock
-            onChange={handleChange}
-        />
-        <Divider />
-        <div style={styles.buttonsWrapper}>
-            <Button id="save" onClick={saveNewPolls} raised primary style={styles.save} >Save</Button>
-            <Button id="cancel" onClick={cancelNewPolls} raised primary style={styles.cancel}>Cancel</Button>
-        </div>
-    </section>
-</form>
-**/

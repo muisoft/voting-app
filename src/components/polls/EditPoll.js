@@ -15,11 +15,11 @@ class EditPoll extends Component {
             newChoice: ''
         }
     }
-    newChoiceChange (e, m) {
+    newChoiceChange(e, m) {
         const target = m.target;
         this.setState({ newChoice: target.value });
     }
-    addNewChoice (e) {
+    addNewChoice(e) {
         this.setState({
             choices: this.state.choices.concat({ count: 0, text: this.state.newChoice })
         });
@@ -28,7 +28,7 @@ class EditPoll extends Component {
     removeChoice(choice) {
         this.setState({ choices: this.state.choices.filter(d => d.text !== choice.text) });
     }
-    
+
     render() {
         let { status, newPoll, updatePoll, saveNewPoll, cancelNewPoll, handleChange,
             poll, handleAnswerChange } = this.props;
@@ -54,7 +54,7 @@ class EditPoll extends Component {
         }
         let newchoices = { id: poll.id, answers: this.state.choices };
         return (
-            <div className="cards" style={{ width: 480}}>
+            <div className="cards" style={{ width: 480 }}>
                 <div>
                     <h2>{poll.question}</h2>
                 </div>
@@ -91,17 +91,17 @@ class EditPoll extends Component {
                                     block
                                     inputStyle={styles.largeInput}
                                     onChange={this.newChoiceChange.bind(this)}
-                                /> 
+                                />
                                 <Button onClick={this.addNewChoice.bind(this)} style={{ width: 37, marginLeft: 15, color: 'green' }} icon>check</Button>
                             </div>
-                            
+
                         </section>
                         <div style={styles.buttonWrapper}>
                             <Button id="save" onClick={() => updatePoll(newchoices)} raised primary style={styles.save} >Update</Button>
                             <Button id="cancel" onClick={cancelNewPoll} raised primary style={styles.cancel}>Cancel</Button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
         );

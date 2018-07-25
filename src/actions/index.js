@@ -1,22 +1,22 @@
 import * as ActionType from './ActionType';
 
 export const selectedPoll = (poll) => {
-   return {
-     type: ActionType.SELECT_POLL,
-     poll
-   }
+    return {
+        type: ActionType.SELECT_POLL,
+        poll
+    }
 };
 export const setVoteStatus = (status) => {
-   return {
-     type: ActionType.VOTE_STATUS,
-     status
-   }
+    return {
+        type: ActionType.VOTE_STATUS,
+        status
+    }
 };
 export const isVoteSubmited = (payload) => {
-   return {
-     type: ActionType.SUBMIT_VOTE,
-     payload
-   }
+    return {
+        type: ActionType.SUBMIT_VOTE,
+        payload
+    }
 };
 export const isMyPolls = (payload) => {
     return {
@@ -98,34 +98,33 @@ export const getMyPolls = () => {
     return getData('/mypolls', isMyPolls);
 }
 export const getAllPolls = () => {
-  return getData('/allpolls', isSuccess);
+    return getData('/allpolls', isSuccess);
 }
 export const getPoll = (id) => {
-    console.log('ID: ' + JSON.stringify(id));
-    return getData('/poll/'+id, isPoll);
+    return getData('/poll/' + id, isPoll);
 }
 export const submitVote = (casted) => {
-  return postData('/submitvote', casted, isVoteSubmited);
+    return postData('/submitvote', casted, isVoteSubmited);
 }
 
 
 export const getData = (url, done) => {
-  return (dispatch) => {
-      // dispatch(isLoading(true));
+    return (dispatch) => {
+        // dispatch(isLoading(true));
         fetch(url,
-          {
-             headers: {
-               'Accept': 'application/json',
-               'Content-Type': 'application/json',
-               'Cache': 'no-cache'
-            },
-            credentials: 'same-origin'
-          })
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Cache': 'no-cache'
+                },
+                credentials: 'same-origin'
+            })
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-              //  dispatch(isLoading(false));
+                //  dispatch(isLoading(false));
                 return response;
             })
             .then((response) => response.json())
@@ -137,38 +136,38 @@ export const getData = (url, done) => {
 }
 
 const postData = (url, payload, done) => {
-     return (dispatch) => {
-         fetch(url, {
-             method: 'POST',
-             body: JSON.stringify(payload),
-             credentials: 'same-origin',
-             headers: new Headers({
-                 'Content-Type': 'application/json'
-             })
-         })
-             .then(res => {
-                 if (!res.ok) {
-                     throw Error(res.statusText);
-                 }
-                 // dispatch(isLoading(false));
-                 return res;
-             })
-             .then(res => res.json())
-             .then(res => {
-                 console.log('Submit: ' + JSON.stringify(res))
-                 dispatch(done(res))
-             })
-             .catch((err) => console.error(err));//dispatch(isError(true)));
-   }
+    return (dispatch) => {
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            credentials: 'same-origin',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw Error(res.statusText);
+                }
+                // dispatch(isLoading(false));
+                return res;
+            })
+            .then(res => res.json())
+            .then(res => {
+                console.log('Submit: ' + JSON.stringify(res))
+                dispatch(done(res))
+            })
+            .catch((err) => console.error(err));//dispatch(isError(true)));
+    }
 }
 
 const fetchWrapper = (url, options, timeout) => {
     return new Promise((resolve, reject) => {
-      fetch(url, options).then(resolve).catch(reject);
+        fetch(url, options).then(resolve).catch(reject);
 
-      if (timeout) {
-        const e = new Error("Connection timed out");
-        setTimeout(reject, timeout, e);
-      }
+        if (timeout) {
+            const e = new Error("Connection timed out");
+            setTimeout(reject, timeout, e);
+        }
     });
-  }
+}

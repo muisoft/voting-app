@@ -18,7 +18,7 @@ class App extends Component {
                         <div>
                             <AppToolbar location={location} />
                             <Switch key={location.key}>
-                                <Route exact path="/" location={location} component={AllPolls}/>
+                                <Route exact path="/" location={location} component={AllPolls} />
                                 <Route path="/account/:type" location={location} component={Account} />
                                 <Route path="/poll/:id" location={location} component={Poll} />
                                 <Route path="/allpolls" location={location} component={AllPolls} />

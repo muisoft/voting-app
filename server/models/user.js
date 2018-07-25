@@ -1,7 +1,4 @@
-const  mongoose = require('mongoose');
-const bCrypt = require('bcrypt-nodejs');
-
-//mongoose.connect('mongodb://localhost:27017/booktrading');
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
     fullname: { type: String, default: "" },
@@ -16,12 +13,4 @@ const UserSchema = new mongoose.Schema({
     photo: []
 });
 
-/**UserSchema.methods = {
-    isCurrectPassword: (user, password) => {
-        return bCrypt.compareSync(password, this.password);
-    },
-    createHash: (password) => {
-        return bCrypt.hashSync(password, genSaltSync(10), null);
-    }
-}**/
 module.exports = mongoose.model('User', UserSchema);
