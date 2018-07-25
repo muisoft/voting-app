@@ -22,14 +22,21 @@ exports.savePoll = (req, res) => {
   });
 }
 
-exports.allPolls = function (req, res) {
+exports.allPolls = (req, res) => {
   Poll.find({}, (err, polls) => {
     console.log('Books: ' + polls);
     console.log('All: ' + JSON.stringify(req.user));
     res.json({ polls: polls, user: req.user });
   })
 }
-
+exports.poll = (req, res) => {
+  let { id } = req.body;
+  console.log('Polll: '+id);
+  Poll.findOne({_id: id}, (err, poll) => {
+    console.log('POLL: '+ JSON.stringify(poll));
+    res.json(poll);
+  })
+}
 exports.myPolls = (req, res) => {
   var { _id } = req.user;
   console.log('Yewo: ' + JSON.stringify(req.user));

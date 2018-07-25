@@ -63,10 +63,10 @@ export const isNotSave = () => {
         type: ActionType.IS_NOT_SAVE,
     }
 }
-export const getValue = (value) => {
+export const isPoll = (payload) => {
     return {
-        type: ActionType.GET_SEARCH,
-        value
+        type: ActionType.SEARCH_POLL,
+        payload
     }
 }
 export const showDialog = () => {
@@ -99,6 +99,10 @@ export const getMyPolls = () => {
 }
 export const getAllPolls = () => {
   return getData('/allpolls', isSuccess);
+}
+export const getPoll = (id) => {
+    console.log('ID: ' + JSON.stringify(id));
+    return getData('/poll/'+id, isPoll);
 }
 export const submitVote = (casted) => {
   return postData('/submitvote', casted, isVoteSubmited);

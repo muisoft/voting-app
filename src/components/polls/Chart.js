@@ -19,6 +19,7 @@ const getBackgroundColor = (ans) => {
     return colors;
 }
 const config = (answers) => {
+    //console.log('Chart: ' + JSON.stringify(answers[0]));
     // filter all answer
     let labels = answers.map((val, i) => {
         return (val.text).trim();
@@ -61,6 +62,7 @@ export default class Chart extends Component {
     
     renderChart() {
         let { answers } = this.props;
+       // console.log('Y: ' + JSON.stringify(answers[0]));
         let c = this.chart.getContext('2d');
         var chart = new ChartJs(c, config(answers));
         // document.getElementById('chart-legends').innerHTML

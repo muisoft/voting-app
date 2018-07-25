@@ -14,7 +14,9 @@ const getPollAnswers = (answers) => {
     }
   })
 }
-const Poll = ({ poll, handleChange, partialState, submitVote }) => {
+const Poll = ({ poll, handleChange, partialState, submitVote, user }) => {
+ 
+  const share = encodeURI('https://twitter.com/intent/tweet?url=https://mon-vote.herokuapp.com/&text=' + poll.question + ' | FreeCodeCamp - React Fullstack Voting App&original_referer=https://mon-vote.herokuapp.com/');
   const style = { borderRadius: 5, padding: 15 };
   const chartProps = {
     chart1: "poll",
@@ -68,6 +70,17 @@ const Poll = ({ poll, handleChange, partialState, submitVote }) => {
             onClick={submitVote}>
             Submit Vote
            </Button>
+          { user.username ?
+          <Button
+            raised
+            primary
+            style={{ float: 'right' }}
+            target="_blank"  
+            href={share}>
+            Share on Twitter
+           </Button>
+            : '' 
+          } 
         </div>
       </Card>
       <Card style={[style, { paddingRight: 5, height: 400 }]} className="md-cell md-cell--5">
@@ -81,6 +94,7 @@ const Poll = ({ poll, handleChange, partialState, submitVote }) => {
 
 Poll.PropTypes = {
   poll: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   partialState: PropTypes.object.isRequired,
   submitVote: PropTypes.func.isRequired

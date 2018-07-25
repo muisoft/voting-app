@@ -20,7 +20,7 @@ class App extends Component {
                             <Switch key={location.key}>
                                 <Route exact path="/" location={location} component={AllPolls}/>
                                 <Route path="/account/:type" location={location} component={Account} />
-                                <Route path="/poll" location={location} component={Poll} />
+                                <Route path="/poll/:id" location={location} component={Poll} />
                                 <Route path="/allpolls" location={location} component={AllPolls} />
                                 <ProtectedRoute path="/mypolls" location={location} component={MyPolls} />
                             </Switch>

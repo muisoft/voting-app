@@ -14,7 +14,7 @@ export const ON_ERROR = 'ON_ERROR';
 export const IS_SAVED = 'IS_SAVED';
 export const IS_NOT_SAVE = 'IS_NOT_SAVE';
 
-export const GET_SEARCH = 'GET_SEARCH';
+export const SEARCH_POLL = 'SEARCH_POLL';
 
 export const SIGN_OUT = 'SIGN_OUT';
 export const ON_SIGNIN = 'ON_SIGNIN';

@@ -1,100 +1,100 @@
-/* eslint-disable-line no-alert */
-import React, { Component } from 'react';
+/**import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DialogContainer, TextField, Divider, Card, Button, Snackbar } from 'react-md';
+import { Card, CardTitle, Button, SelectionControlGroup } from 'react-md';
+import Chart from './Chart';
 
 import { withMainComponent } from '../hoc';
 
-const Test = ({ saveNewPolls, cancelNewPolls, handleChange}) => {
-    const styles = {
-        save: { marginTop: 15, marginRight: 15 },
-        cancel: { marginTop: 15 },
-        buttonWrapper: { float: 'right' },
-        section: { padding: 20 },
-        card: { height: 260, width: 500 },
-        header: { alignSelf: 'center' },
-        inputLarge: {
-          height: 46,
-          width: 400,
-          padding: '10px 16px',
-          fontSize: 18,
-          lineHeight: 1.3333333,
-          border: '2px solid #ccc',
-          borderRadius: 6,
-          backgroundImage: 'none',
-          boxShadow: 'inset 0 1px 1px rgba(0, 0, 0, .075)'
+const getPollAnswers = (answers) => {
+    console.log('PollAns: ' + JSON.stringify(answers));
+    return answers.map((ans, i) => {
+        return {
+            label: ans.text,
+            value: ans.text
+        }
+    })
 }
+const Poll = ({ poll, handleChange, partialState, submitVote, user }) => {
+    const style = { borderRadius: 5, padding: 15 };
+    const chartProps = {
+        chart1: "poll",
+        height: "30",
+        paddingTop: "50",
+        answers: poll.answers
+    }
+    const handleRate = (checked, changeEvent) => {
+        let answer = poll.answers.filter(ans => ans.text === checked);
+        let casted = {
+            id: "",
+            answer: {
+                id: "",
+                text: ""
+            }
+        }
+
+        if (checked) {
+            casted = {
+                id: poll.id,
+                answer: {
+                    id: answer[0]._id,
+                    text: answer[0].text
+                }
+            }
+            partialState['casted'] = casted;
+        }
     }
     return (
-        <div style={{width: 500, height: 300}}>
-            <div className="cards md-cell--8" style={styles.header}>
-                <h2>Add New Poll</h2>
-            </div>
-            <div className="cards md-cell--center md-cell--12" >
-                <form>
-                    <section style={styles.section}>
-                    <TextField
-                        id="thumbnail"
-                        name="thumbnail"
-                        placeholder="Question"
-                        block
-                        inputStyle={styles.inputLarge}
-                        onChange={handleChange}
+        <div className="md-grid" style={{ marginTop: 90, marginLeft: 'auto', marginRight: 'auto', paddingLeft: 40, padding: 20 }}>
+            <Card style={style} className="md-cell md-cell--6">
+                <CardTitle
+                    title={poll.question}
+                />
+
+                <form className="questions">
+                    <SelectionControlGroup
+                        id="answer"
+                        name="answers"
+                        type="radio"
+                        controls={getPollAnswers(poll.answers)}
+                        disabled={false}
+                        defaultValue=""
+                        onChange={handleRate}
                     />
-                        <TextField
-                            id="thumbnail"
-                            name="thumbnail"
-                            placeholder="Supply your answers seprated by comma(,)"
-                            block
-                            inputStyle={styles.inputLarge}
-                            onChange={handleChange}
-                        />
-                        <div style={styles.buttonsWrapper}>
-                            <Button id="save" onClick={saveNewPolls} raised primary style={styles.save} >Save</Button>
-                            <Button id="cancel" onClick={cancelNewPolls} raised primary style={styles.cancel}>Cancel</Button>
-                        </div>
-                    </section>
                 </form>
-            </div>
+                <div style={{ paddingBottom: 20 }}>
+                    <Button
+                        raised
+                        primary
+                        onClick={submitVote}>
+                        Submit Vote
+           </Button>
+                    {user.username ?
+                        <Button
+                            raised
+                            primary
+                            style={{ float: 'right' }}
+                            onClick={submitVote}>
+                            Share on Twitter
+           </Button>
+                        : ''
+                    }
+                </div>
+            </Card>
+            <Card style={[style, { paddingRight: 5, height: 400 }]} className="md-cell md-cell--5">
+                <div style={{ paddingBottom: 20 }} className="md-cell md-cell--6 polling">
+                    <Chart {...chartProps} />
+                </div>
+            </Card>
         </div>
     );
 }
 
-Test.PropTypes = {
-    saveNewPolls: PropTypes.func.isRequired,
-    cancelNewPolls: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired
+Poll.PropTypes = {
+    poll: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    partialState: PropTypes.object.isRequired,
+    submitVote: PropTypes.func.isRequired
 }
 
-export default withMainComponent(Test);
-
-
-/**
-<form>
-    <section style={styles.section}>
-        <TextField
-            id="title"
-            name="title"
-            placeholder="Pic's title"
-            block
-            paddedBlock
-            style={{borderRadius: 5}}
-            onChange={handleChange}
-        />
-        <Divider />
-        <TextField
-            id="thumbnail"
-            name="thumbnail"
-            placeholder="Pic's url"
-            block
-            paddedBlock
-            onChange={handleChange}
-        />
-        <Divider />
-        <div style={styles.buttonsWrapper}>
-            <Button id="save" onClick={saveNewPolls} raised primary style={styles.save} >Save</Button>
-            <Button id="cancel" onClick={cancelNewPolls} raised primary style={styles.cancel}>Cancel</Button>
-        </div>
-    </section>
-</form>
-**/
+export default withMainComponent(Poll);**/

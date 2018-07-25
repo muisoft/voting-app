@@ -63,7 +63,9 @@ export const actionsWrapper = (props) => {
             props.toMyPolls();
         },
         handleSignout: () => {
+            props.resetAll();
             props.signout();
+            props.toLogin();
         },
         onSignin: (e) => {
             props.login(props.partialState);
@@ -81,7 +83,7 @@ export const actionsWrapper = (props) => {
         },
         selectPoll: (poll) => {
             props.setVoteStatus('check');
-            props.gotoPoll();
+            props.gotoPoll(poll.id);
             props.selectedPoll(poll);
         },
         editPoll: (poll) => {

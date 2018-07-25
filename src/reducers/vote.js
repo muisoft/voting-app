@@ -39,6 +39,14 @@ export const vote = (state = initialState, action) => {
                 ...state,
                 mypolls: action.payload
             }
+
+        case ActionType.SEARCH_POLL:
+            console.log('PAns: ' + JSON.stringify(action.payload));    
+            return {
+                ...state,
+                polls: action.payload.polls,
+                poll: action.payload.poll
+            }    
         case ActionType.ON_ERROR:
             return {
                 ...state,
@@ -56,7 +64,6 @@ export const vote = (state = initialState, action) => {
                 user: action.payload.user
             }
         case ActionType.SUBMIT_VOTE:
-            console.log('Submit2: ' + JSON.stringify(action.payload));
             return {
                 ...state,
                 poll: action.payload

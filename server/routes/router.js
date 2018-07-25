@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const User = require('mongoose').model('User');
 const Poll = require('mongoose').model('Poll');
-const { allPolls, myPolls, savePoll, signup, submitVote, updatePoll, deletePoll } = require('./utils');
+const { allPolls, myPolls, savePoll, poll, signup, submitVote, updatePoll, deletePoll } = require('./utils');
 /**import {
     signup,
     savePics, allPics,
@@ -55,7 +55,20 @@ router.get('/allpolls', (req, res) => {
   console.log('All Polls');
   allPolls(req, res);
 });
-
+router.post('/poll', (req, res) => {
+  console.log('Enter Poll');
+  poll(req, res);
+});
+router.get('/poll/:poll', (req, res, next) => {
+  console.log('Enter Poll');
+  Poll.findOne({ _id: req.params.poll }, (err, poll) => {
+    console.log('POLL: ' + JSON.stringify(poll));
+   // Poll.find({}, (err, polls) => {
+     // res.json({ polls: polls, poll: poll });
+      res.redirect(redir + 'poll/' + req.params.poll); 
+   // })
+  });
+})  
 router.get('/mypolls', isLoggedIn, (req, res) => {
  myPolls(req, res);
 });
