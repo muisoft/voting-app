@@ -25,7 +25,9 @@ export const vote = (state = initialState, action) => {
         case ActionType.ON_SUCCESS:
             return {
                 ...state,
-                polls: action.payload
+                polls: action.payload.polls,
+                user: action.payload.user ? action.payload.user : {}
+
             }
         case ActionType.ON_SIGNIN:
             return {

@@ -10,7 +10,9 @@ const UserSchema = new mongoose.Schema({
     password: String,
     city: { type: String, default: "" },
     state: { type: String, default: "" },
-    githubId: { type: String, default: "" },
+    twitter: {
+        twitterId: { type: String, required: false },
+    },
     photo: []
 });
 

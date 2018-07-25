@@ -25,7 +25,8 @@ exports.savePoll = (req, res) => {
 exports.allPolls = function (req, res) {
   Poll.find({}, (err, polls) => {
     console.log('Books: ' + polls);
-    res.json(polls);
+    console.log('All: ' + JSON.stringify(req.user));
+    res.json({ polls: polls, user: req.user });
   })
 }
 

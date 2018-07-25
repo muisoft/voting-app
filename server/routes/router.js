@@ -13,7 +13,7 @@ const { allPolls, myPolls, savePoll, signup, submitVote, updatePoll, deletePoll 
 **/
 var router = express.Router();
 
-const redir = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/';
+const redir = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001/';
 
 const isLoggedIn = (req, res, next) => {
   if(req.isAuthenticated()){
@@ -28,16 +28,15 @@ router.get('/signout', (req, res) => {
     res.json({ success: true});
 })
 
-router.get('/auth/github', (req, res, next) => {
-  return passport.authenticate('github')(req, res, next);
+router.get('/auth/twitter', (req, res, next) => {
+  return passport.authenticate('twitter')(req, res, next);
 })
 
-router.get("/auth/github/callback", (req, res, next) => {
-  return passport.authenticate('github', {
-    successRedirect: redir,
-    failureRedirect: redir + 'account/login'
-  })(req, res, next);
-});
+router.get('/auth/twitter/callback',
+      passport.authenticate('twitter', { failureredirect: redir + 'account/login'}),
+      (req, res) => {
+        res.redirect(redir)
+      })
 
 router.post('/signin', (req, res, next) => {
 
@@ -54,11 +53,7 @@ router.post('/signup', (req, res) => {
 })
 router.get('/allpolls', (req, res) => {
   console.log('All Polls');
-  //allBooks(req, res);
-  Poll.find({}, (err, polls) => {
-    console.log('Books: '+polls);
-    res.json(polls);
-  })
+  allPolls(req, res);
 });
 
 router.get('/mypolls', isLoggedIn, (req, res) => {

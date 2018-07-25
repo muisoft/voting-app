@@ -21,7 +21,7 @@ class App extends Component {
                                 <Route exact path="/" location={location} component={AllPolls}/>
                                 <Route path="/account/:type" location={location} component={Account} />
                                 <Route path="/poll" location={location} component={Poll} />
-                                <ProtectedRoute path="/allpolls" location={location} component={AllPolls} />
+                                <Route path="/allpolls" location={location} component={AllPolls} />
                                 <ProtectedRoute path="/mypolls" location={location} component={MyPolls} />
                             </Switch>
                         </div>
